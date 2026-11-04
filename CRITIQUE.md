@@ -1,0 +1,22 @@
+- Font hierarchy is good, but the color choices could be improved to better reinforce the hierarchy.
+- Some text colors against their respective backgrounds may not meet WCAG contrast requirements.
+- Navigation feels rather bland and doesn't stand out enough. The navigation links and buttons could use a stronger visual hierarchy.
+- Line spacing is generally good, although it feels a little excessive in some paragraphs, particularly at smaller widths.
+- Button hover states make the primary and secondary buttons look too similar when secondary is in hover state, reducing their visual distinction.
+- Overall alignment is consistent, and the elements line up well throughout the page.
+- The two fonts are used consistently, with Bricolage Grotesque for headings and interface elements and Newsreader for body text.
+- Like the sparse use of color but too much on the the book spines, I would keep it but lessen it somehow, because this makes the rest of the page feel very lacking in color and visual interest.
+- Responsive navigation could be improved, as most navigation links disappear on smaller screens without a replacement menu.
+- The interactive elements are also rather inconsisent with the links glowing to no affect but just underlined.
+- No active naviation indicator.
+- Color pallete needs balance, the background and font color are so bland that the stronger accent colors just drag the focus to them.
+- Navigation links disappear when under 760px
+- Dates on top of the book spine do not have enough spacing underneath, so its just really close to the event titles.
+- The checkboxes could be slightly larger. They're noticeably smaller than the text inputs, making the form controls feel somewhat inconsistent.
+- Spacing within the form feels inconsistent. The distances between labels, inputs, checkboxes, and the submit button could be more uniform.
+- There's slightly too much vertical space above the hero content. Reducing the top padding would make the empty space above and below the content feel more balanced.
+- The footer feels extremely disconnected from the rest of the page. Its dark background creates an abrupt transition from the lighter sections.
+- The links feel inconsistent with the rest of the page and with one another in terms of styling.
+- The text colors lack sufficient contrast against the background, making some of the content difficult to read.
+- Spacing is inconsistent, both between the top and bottom edges of the footer and among its contents.
+- The column contents could be better arranged. For example, the "Back to top" link feels awkwardly placed directly underneath the email address.
