@@ -12,13 +12,17 @@
     rel="stylesheet">
   <style>
     :root {
-      --paper: #eef1f4;
+      --paper: #f7f3ea;
       --ink: #17243a;
-      --muted: #52607a;
+      --muted: #3f4b63;
       --card: #fff;
-      --line: #d5dbe4;
-      --mustard: #e2a82b;
+      --line: #e0d9c8;
+      --accent: #1f6661;
+      --accent-hover: #174f4b;
+      --link: #1f6661;
+      --bar: #1f6661;
       --teal: #2b7f7a;
+      --mustard: #e2a82b;
       --rose: #bf3f56;
       --forest: #3a5a3c;
       --plum: #6a3f7a;
@@ -29,11 +33,13 @@
     @media (prefers-color-scheme:dark) {
       :root {
         --paper: #0f1726;
-        --ink: #eef1f4;
-        --muted: #a3aec2;
+        --ink: #e6eaf1;
+        --muted: #b4bfd2;
         --card: #18233a;
         --line: #2b3853;
-        --rose: #e8788a
+        --accent: #2b7f7a;
+        --accent-hover: #236b67;
+        --link: #6dbdb6
       }
     }
 
@@ -66,7 +72,7 @@
     }
 
     :focus-visible {
-      outline: 3px solid var(--teal);
+      outline: 3px solid var(--link);
       outline-offset: 3px
     }
 
@@ -80,14 +86,33 @@
       padding: 88px 0
     }
 
+    /* links */
+    .card a {
+      color: var(--link)
+    }
+
+    .card a,
+    footer a {
+      text-decoration: none
+    }
+
+    .card a:hover,
+    footer a:not(.brand):hover {
+      text-decoration: underline;
+      text-underline-offset: 4px
+    }
+
     /* header */
     header {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line)
+      background: var(--bar);
+      color: #fff
+    }
+
+    header :focus-visible {
+      outline-color: #fff
     }
 
     header .wrap {
@@ -113,24 +138,47 @@
 
     nav a {
       text-decoration: none;
-      font-weight: 500;
-      font-size: .95rem;
-      /* was .98rem */
-      color: var(--muted)
+      font-weight: 700;
+      font-size: .95rem
     }
 
-    nav a:hover {
-      color: var(--ink)
+    nav a:not(.btn) {
+      padding: 4px 0;
+      border-bottom: 3px solid transparent
+    }
+
+    nav a:not(.btn):hover {
+      border-bottom-color: rgba(255, 255, 255, .5)
+    }
+
+    nav a[aria-current] {
+      border-bottom-color: #fff
     }
 
     nav .btn {
-      color: var(--paper)
+      background: #fff;
+      color: var(--bar)
+    }
+
+    nav .btn:hover {
+      background: #dcebe9;
+      color: var(--bar)
+    }
+
+    header .menu-toggle {
+      color: #fff;
+      box-shadow: inset 0 0 0 2px #fff
+    }
+
+    header .menu-toggle.alt:hover {
+      background: rgba(255, 255, 255, .15);
+      color: #fff
     }
 
     .btn {
       display: inline-block;
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--accent);
+      color: #fff;
       padding: 12px 22px;
       border-radius: 999px;
       font-weight: 700;
@@ -141,7 +189,7 @@
     }
 
     .btn:hover {
-      background: var(--teal);
+      background: var(--accent-hover);
       color: #fff
     }
 
@@ -152,27 +200,35 @@
     }
 
     .btn.alt:hover {
-      background: var(--ink);
-      color: var(--paper)
+      background: color-mix(in srgb, var(--ink) 12%, transparent);
+      color: var(--ink)
+    }
+
+    .menu-toggle {
+      display: none
     }
 
     /* hero */
     .hero {
-      padding: 72px 0 0;
+      padding: 48px 0 0;
       overflow: hidden
     }
 
     .hero h1 {
-      font-size: clamp(2.6rem, 7vw, 5.4rem);
+      font-size: clamp(3.2rem, 10vw, 7.5rem);
       line-height: 1;
       font-weight: 800;
       letter-spacing: -.04em;
       max-width: 13ch
     }
 
+    .hero h1 span {
+      background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent) 35%, transparent) 62%)
+    }
+
     .hero p {
       max-width: 46ch;
-      margin: 24px 0 32px;
+      margin: 32px 0 40px;
       color: var(--muted);
       font-size: 1.25rem
     }
@@ -189,22 +245,25 @@
       gap: 6px;
       margin-top: 64px;
       padding: 0 4px;
-      border-bottom: 14px solid var(--ink);
-      min-height: 300px
+      border-bottom: 14px solid var(--ink)
     }
 
     .spine {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      padding: 16px 0;
+      gap: 14px;
+      padding: 16px 0 20px;
       width: clamp(44px, 9vw, 84px);
-      color: #fff;
+      color: var(--ink);
+      background: color-mix(in srgb, var(--c) 22%, var(--card));
+      border-top: 6px solid var(--c);
       text-decoration: none;
       border-radius: 6px 6px 0 0;
       font-family: var(--display);
-      animation: rise .7s cubic-bezier(.2, .8, .2, 1) backwards
+      animation: rise .7s cubic-bezier(.2, .8, .2, 1) backwards;
+      transition: transform .2s
     }
 
     .spine b {
@@ -225,38 +284,28 @@
       transform: translateY(-12px)
     }
 
-    .spine {
-      transition: transform .2s
-    }
-
     .spine:nth-child(1) {
-      height: 270px;
-      background: var(--teal);
+      --c: var(--teal);
       animation-delay: .05s
     }
 
     .spine:nth-child(2) {
-      height: 300px;
-      background: var(--mustard);
-      color: #1d1a10;
+      --c: var(--mustard);
       animation-delay: .12s
     }
 
     .spine:nth-child(3) {
-      height: 250px;
-      background: #bf3f56;
+      --c: var(--rose);
       animation-delay: .19s
     }
 
     .spine:nth-child(4) {
-      height: 290px;
-      background: var(--forest);
+      --c: var(--forest);
       animation-delay: .26s
     }
 
     .spine:nth-child(5) {
-      height: 260px;
-      background: var(--plum);
+      --c: var(--plum);
       animation-delay: .33s
     }
 
@@ -333,6 +382,7 @@
       background: var(--paper);
       border-radius: 20px;
       padding: 26px;
+      border: 1px solid var(--line);
       border-left: 8px solid var(--c)
     }
 
@@ -361,9 +411,7 @@
 
     .card a {
       font-family: var(--display);
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 4px
+      font-weight: 700
     }
 
     /* signup */
@@ -393,24 +441,30 @@
     legend {
       font-family: var(--display);
       font-weight: 700;
-      font-size: .95rem
+      font-size: 1.1rem
+    }
+
+    legend {
+      padding: 0;
+      margin-bottom: 8px
     }
 
     input[type=text],
     input[type=email] {
       width: 100%;
-      margin-top: 6px;
+      margin-top: 8px;
       padding: 13px 14px;
       border: 2px solid var(--line);
       border-radius: 10px;
       background: var(--paper);
       color: var(--ink);
-      font: inherit
+      font: inherit;
+      font-size: 1.2rem
     }
 
     input[type=text]:focus,
     input[type=email]:focus {
-      border-color: var(--teal);
+      border-color: var(--accent);
       outline: 0
     }
 
@@ -418,35 +472,40 @@
       border: 0;
       padding: 0;
       display: grid;
-      gap: 8px
+      gap: 12px
     }
 
     fieldset label {
       font-family: var(--body);
       font-weight: 400;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       display: flex;
       gap: 10px;
       align-items: center
     }
 
     input[type=checkbox] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--teal)
+      width: 24px;
+      height: 24px;
+      accent-color: var(--accent)
     }
 
     #msg {
+      margin-top: 12px;
       font-family: var(--display);
       font-weight: 700;
-      color: var(--teal)
+      color: var(--link)
+    }
+
+    #msg:empty {
+      margin: 0
     }
 
     /* footer */
     footer {
-      background: #17243a;
-      color: #eef1f4;
-      padding: 56px 0 32px
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      padding: 48px 0
     }
 
     footer .cols {
@@ -462,33 +521,59 @@
 
     footer p,
     footer a {
-      color: #b7c1d4;
       font-size: 1rem;
-      display: block;
-      text-decoration: none
+      display: block
     }
 
-    footer a:hover {
-      color: #fff;
-      text-decoration: underline
+    footer p {
+      color: var(--muted)
     }
 
     footer .brand {
-      color: #fff;
       display: block;
       margin-bottom: 10px
     }
 
     footer .legal {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #2f3d59;
-      font-size: .9rem
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    footer .legal a {
+      font-size: inherit
     }
 
     @media (max-width:760px) {
-      nav a:not(.btn) {
-        display: none
+      body {
+        line-height: 1.45
+      }
+
+      .menu-toggle {
+        display: inline-block
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px 24px;
+        background: var(--bar)
+      }
+
+      nav.open {
+        display: flex
       }
 
       section {
@@ -512,7 +597,8 @@
   <header>
     <div class="wrap">
       <a class="brand" href="#top">Marginalia Books</a>
-      <nav aria-label="Main">
+      <button class="btn alt menu-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav id="nav" aria-label="Main">
         <a href="#about">What to expect</a>
         <a href="#events">Calendar</a>
         <a href="#visit">Visit</a>
@@ -524,7 +610,7 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <h1>Come read with us.</h1>
+        <h1>Come <span>read</span> with us.</h1>
         <p>Readings, book clubs, and workshops in the back room of your neighborhood bookshop. Most are free, and every
           one has coffee.</p>
         <div class="actions">
@@ -632,8 +718,10 @@
             <label><input type="checkbox" name="i" value="kids"> Kids’ events</label>
             <label><input type="checkbox" name="i" value="workshops"> Workshops</label>
           </fieldset>
-          <button class="btn" type="submit">Sign me up</button>
-          <p id="msg" role="status" aria-live="polite"></p>
+          <div>
+            <button class="btn" type="submit">Sign me up</button>
+            <p id="msg" role="status" aria-live="polite"></p>
+          </div>
         </form>
       </div>
     </section>
@@ -654,10 +742,12 @@
         <div>
           <h3>Contact</h3>
           <a href="mailto:events@marginalia.example">events@marginalia.example</a>
-          <a href="#top">Back to top</a>
         </div>
       </div>
-      <p class="legal">© 2026 Marginalia Books. All rights reserved.</p>
+      <div class="legal">
+        <span>© 2026 Marginalia Books. All rights reserved.</span>
+        <a href="#top">Back to top</a>
+      </div>
     </div>
   </footer>
 
@@ -666,7 +756,7 @@
       e.preventDefault();
       var f = e.target, m = document.getElementById('msg');
       if (!f.name.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value)) {
-        m.style.color = 'var(--rose)';
+        m.style.color = 'var(--ink)';
         m.textContent = 'Please enter your name and a valid email address.';
         return;
       }
@@ -674,6 +764,32 @@
       m.textContent = 'Thanks, ' + f.name.value.trim().split(' ')[0] + '. You’re on the list.';
       f.reset();
     });
+
+    var toggle = document.querySelector('.menu-toggle'), nav = document.getElementById('nav');
+    toggle.addEventListener('click', function () {
+      toggle.setAttribute('aria-expanded', nav.classList.toggle('open'));
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    var links = [].slice.call(document.querySelectorAll('nav a:not(.btn)'));
+    function setActive() {
+      var y = window.scrollY + 100, cur = null;
+      links.forEach(function (a) {
+        var s = document.querySelector(a.getAttribute('href'));
+        if (s && s.offsetTop <= y) cur = a;
+      });
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) cur = links[links.length - 1];
+      links.forEach(function (a) {
+        if (a === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
   </script>
 </body>
 
