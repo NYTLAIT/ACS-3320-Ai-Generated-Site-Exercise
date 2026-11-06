@@ -19,7 +19,7 @@
       --line: #d5dbe4;
       --mustard: #e2a82b;
       --teal: #2b7f7a;
-      --rose: #d4586b;
+      --rose: #bf3f56;
       --forest: #3a5a3c;
       --plum: #6a3f7a;
       --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
@@ -32,7 +32,8 @@
         --ink: #eef1f4;
         --muted: #a3aec2;
         --card: #18233a;
-        --line: #2b3853
+        --line: #2b3853;
+        --rose: #e8788a
       }
     }
 
@@ -65,7 +66,7 @@
     }
 
     :focus-visible {
-      outline: 3px solid var(--mustard);
+      outline: 3px solid var(--teal);
       outline-offset: 3px
     }
 
@@ -113,7 +114,8 @@
     nav a {
       text-decoration: none;
       font-weight: 500;
-      font-size: .98rem;
+      font-size: .95rem;
+      /* was .98rem */
       color: var(--muted)
     }
 
@@ -242,7 +244,7 @@
 
     .spine:nth-child(3) {
       height: 250px;
-      background: var(--rose);
+      background: #bf3f56;
       animation-delay: .19s
     }
 
@@ -329,7 +331,7 @@
       flex-direction: column;
       gap: 12px;
       background: var(--paper);
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 26px;
       border-left: 8px solid var(--c)
     }
@@ -380,7 +382,7 @@
 
     form {
       display: grid;
-      gap: 18px;
+      gap: 24px;
       background: var(--card);
       padding: 32px;
       border-radius: 20px;
@@ -442,7 +444,7 @@
 
     /* footer */
     footer {
-      background: var(--ink);
+      background: #17243a;
       color: #eef1f4;
       padding: 56px 0 32px
     }
